@@ -1,65 +1,120 @@
+:root {
+  --text-color: #f0f4f5;
+  --accent-color: #263343;
+  --background-color: #d49466;
+}
 body {
-  box-sizing: border-box;
   margin: 0;
+  font-family: "Source Sans Pro";
 }
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
+/*text-decoriation 은 태그의 밑줄 제거*/
 a {
   text-decoration: none;
-  color: rgb(245, 245, 245);
+  color: var(--text-color);
 }
-
-a:hover i {
-  color: red;
-  transform: scale(1.5);
-  transition: all 0.4s ease;
-}
-
 .navbar {
-  background-color: gray;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 5px;
+  background-color: var(--accent-color);
+  padding: 8px 12px;
+}
+
+/*logo*/
+
+.navbar_logo {
+  font-size: 28px;
+  color: var(--text-color);
 }
 
 .navbar_logo i {
-  padding-left: 10px;
+  color: var(--background-color);
+}
+.navbar_logo span {
+  font-size: 25px;
 }
 
-.fa-dice-d20 {
-  font-size: 45px;
-  color: white;
-}
-.navbar_logoname {
-  font-size: 45px;
-  color: white;
-}
+/*menu*/
 
+/*list-style 은 리스트의  쩜? 제거*/
 .navbar_menu {
   display: flex;
-}
-li {
-  padding-right: 10px;
-}
-
-/* links */
-
-.fa-github {
-  font-size: 45px;
-  color: rgb(255, 255, 255);
+  list-style: none;
+  padding-left: 0px;
 }
 
-.fa-facebook {
-  font-size: 45px;
-  color: rgb(255, 255, 255);
+.navbar_menu li {
+  padding: 8px 12px;
 }
+/* li 가 hover 마우스가 올라가면 꾸며준다.   
+boder-radius 백스라운드 상자를 꾸며준다.
+*/
+.navbar_menu li:hover {
+  background-color: var(--background-color);
+  border-radius: 4px;
+}
+
+/*Link*/
 
 .navbar_links {
+  font-size: 25px;
   display: flex;
+  list-style: none;
+  color: var(--text-color);
+  padding-left: 0px;
+  margin: 7px;
+}
+
+.navbar_links li {
+  padding: 8px 12px;
+}
+/*
+그냥 흐름에서 나와서 배치 한다 position: absolute; 따로 배치
+right에서 32px  떨어진곳에 붙여줘!
+display none을 하여 평소에는 안보이고 줄어들면 보이개하기
+*/
+.navbar_togleBtn {
+  display: none;
+  position: absolute;
+  right: 25px;
+  font-size: 24px;
+  color: var(--background-color);
+}
+
+/*
+창이 줄어들때 자연스럽개 만들어주는 @media
+*/
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+  }
+  /*
+  메뉴의 넓이가 작기떄문에 width: 100%  해줘야한다.
+  */
+
+  .navbar_menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .navbar_menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar_links {
+    display: none;
+    justify-content: center;
+    width: 100%;
+  }
+  .navbar_togleBtn {
+    display: block;
+  }
+  .navbar_menu.active,
+  .navbar_links.active {
+    display: flex;
+  }
 }
